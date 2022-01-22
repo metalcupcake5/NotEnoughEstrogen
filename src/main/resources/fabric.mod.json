@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "justenoughupdates",
+  "version": "0.0.1",
+
+  "name": "JustEnoughUpdates",
+  "description": "high pixel sky block mod",
+  "authors": [
+    "metalcupcake5"
+  ],
+  "contact": {
+    "sources": "https://github.com/metalcupcake5"
+  },
+
+  "license": "GNU AGPLv3",
+  "icon": "assets/JustEnoughUpdates/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdates"
+    ]
+  },
+  "mixins": [
+    "justenoughupdates.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  }
+}
