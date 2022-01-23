@@ -20,6 +20,7 @@ public class ConfigManager {
     public static boolean showSkyblockIds = true;
     public static boolean dropProtectionEnabled = true;
     public static boolean skymallNotifEnabled = true;
+    public static boolean showItemInfo = true;
 
     public static final Path CONFIG = FabricLoader.getInstance().getConfigDir().resolve("justenoughupdates.json");
 
@@ -38,6 +39,7 @@ public class ConfigManager {
         config.addProperty("showSkyblockIds", showSkyblockIds);
         config.addProperty("dropProtectionEnabled", dropProtectionEnabled);
         config.addProperty("skymallNotifEnabled", skymallNotifEnabled);
+        config.addProperty("showItemInfo", showItemInfo);
         try {
             Files.write(CONFIG, gson.toJson(config).getBytes());
         } catch (IOException e) {
@@ -57,6 +59,7 @@ public class ConfigManager {
             showSkyblockIds = json.get("showSkyblockIds").getAsBoolean();
             dropProtectionEnabled = json.get("dropProtectionEnabled").getAsBoolean();
             skymallNotifEnabled = json.get("skymallNotifEnabled").getAsBoolean();
+            showItemInfo = json.get("showItemInfo").getAsBoolean();
         } catch (JsonSyntaxException | NullPointerException e) {
             JustEnoughUpdates.LOGGER.warn("Malformed Json, Fixing");
             fix = true;

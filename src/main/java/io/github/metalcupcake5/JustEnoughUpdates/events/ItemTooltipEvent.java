@@ -25,18 +25,19 @@ public class ItemTooltipEvent {
                 lines.add(Text.of(Formatting.DARK_GRAY + "skyblock id: " + attributes.getString("id")));
             }
         }
-        String timestamp = attributes.getString("timestamp");
-        if(timestamp.length() > 0) {
-            lines.add(Text.of(Formatting.DARK_GRAY + "timestamp: " + attributes.getString("timestamp")));
+        if(ConfigManager.showItemInfo) {
+            String timestamp = attributes.getString("timestamp");
+            if (timestamp.length() > 0) {
+                lines.add(Text.of(Formatting.DARK_GRAY + "timestamp: " + attributes.getString("timestamp")));
+            }
+            String origin = attributes.getString("originTag");
+            if (origin.length() > 0) {
+                lines.add(Text.of(Formatting.DARK_GRAY + "origin: " + attributes.getString("originTag")));
+            }
+            String uuid = attributes.getString("uuid");
+            if (uuid.length() > 0) {
+                lines.add(Text.of(Formatting.DARK_GRAY + "uuid: " + attributes.getString("uuid")));
+            }
         }
-        String origin = attributes.getString("originTag");
-        if(origin.length() > 0) {
-            lines.add(Text.of(Formatting.DARK_GRAY + "origin: " + attributes.getString("originTag")));
-        }
-        String uuid = attributes.getString("uuid");
-        if(uuid.length() > 0) {
-            lines.add(Text.of(Formatting.DARK_GRAY + "uuid: " + attributes.getString("uuid")));
-        }
-
     }
 }
