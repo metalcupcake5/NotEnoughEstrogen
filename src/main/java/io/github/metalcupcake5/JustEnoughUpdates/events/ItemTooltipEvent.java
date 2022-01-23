@@ -1,5 +1,6 @@
 package io.github.metalcupcake5.JustEnoughUpdates.events;
 
+import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -18,9 +19,11 @@ public class ItemTooltipEvent {
         if(attributes == null){
             return;
         }
-        String id = attributes.getString("id");
-        if(id.length() > 0) {
-            lines.add(Text.of(Formatting.DARK_GRAY + "skyblock id: " + attributes.getString("id")));
+        if(ConfigManager.showSkyblockIds) {
+            String id = attributes.getString("id");
+            if (id.length() > 0) {
+                lines.add(Text.of(Formatting.DARK_GRAY + "skyblock id: " + attributes.getString("id")));
+            }
         }
         String timestamp = attributes.getString("timestamp");
         if(timestamp.length() > 0) {
