@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/*
+    adapted from https://github.com/Minenash/CustomHUD/blob/1.18/src/main/java/com/minenash/customhud/CustomHud.java
+ */
+
 public class ConfigManager {
     // config variables
     public static boolean enabled = true;
