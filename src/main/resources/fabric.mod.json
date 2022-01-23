@@ -19,7 +19,8 @@
   "entrypoints": {
     "main": [
       "io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdates"
-    ]
+    ],
+    "modmenu": ["io.github.metalcupcake5.JustEnoughUpdates.config.ModMenuIntegration"]
   },
   "mixins": [
     "justenoughupdates.mixins.json"

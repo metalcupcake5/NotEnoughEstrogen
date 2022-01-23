@@ -17,8 +17,9 @@ import java.nio.file.Path;
 
 public class ConfigManager {
     // config variables
-    public static boolean enabled = true;
-    public static String test = "";
+    public static boolean showSkyblockIds = true;
+    public static boolean dropProtectionEnabled = true;
+    public static boolean skymallNotifEnabled = true;
 
     public static final Path CONFIG = FabricLoader.getInstance().getConfigDir().resolve("justenoughupdates.json");
 
@@ -34,8 +35,9 @@ public class ConfigManager {
             }
         }
         JsonObject config = new JsonObject();
-        config.addProperty("enabled", enabled);
-        config.addProperty("test", "test");
+        config.addProperty("showSkyblockIds", showSkyblockIds);
+        config.addProperty("dropProtectionEnabled", dropProtectionEnabled);
+        config.addProperty("skymallNotifEnabled", skymallNotifEnabled);
         try {
             Files.write(CONFIG, gson.toJson(config).getBytes());
         } catch (IOException e) {
@@ -52,10 +54,9 @@ public class ConfigManager {
         boolean fix = false;
         try {
             JsonObject json = gson.fromJson(Files.newBufferedReader(CONFIG), JsonObject.class);
-            enabled = json.get("enabled").getAsBoolean();
-            test = json.get("test").getAsString();
-            JustEnoughUpdates.LOGGER.info("enabled: " + enabled);
-            JustEnoughUpdates.LOGGER.info("test: " + test);
+            showSkyblockIds = json.get("showSkyblockIds").getAsBoolean();
+            dropProtectionEnabled = json.get("dropProtectionEnabled").getAsBoolean();
+            skymallNotifEnabled = json.get("skymallNotifEnabled").getAsBoolean();
         } catch (JsonSyntaxException e) {
             JustEnoughUpdates.LOGGER.warn("Malformed Json, Fixing");
             fix = true;
