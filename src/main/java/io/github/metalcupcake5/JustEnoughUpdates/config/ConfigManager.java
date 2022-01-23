@@ -57,7 +57,7 @@ public class ConfigManager {
             showSkyblockIds = json.get("showSkyblockIds").getAsBoolean();
             dropProtectionEnabled = json.get("dropProtectionEnabled").getAsBoolean();
             skymallNotifEnabled = json.get("skymallNotifEnabled").getAsBoolean();
-        } catch (JsonSyntaxException e) {
+        } catch (JsonSyntaxException | NullPointerException e) {
             JustEnoughUpdates.LOGGER.warn("Malformed Json, Fixing");
             fix = true;
         } catch (IOException e) {
