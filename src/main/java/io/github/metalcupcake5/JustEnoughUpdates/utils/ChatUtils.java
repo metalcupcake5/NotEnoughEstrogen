@@ -8,7 +8,7 @@ import net.minecraft.util.Util;
 
 public class ChatUtils {
     public static String prefix(){
-        return "" + Formatting.AQUA + Formatting.BOLD + "[" + Formatting.RESET + Formatting.AQUA + "Dez Nut" + Formatting.AQUA + Formatting.BOLD + "]" + Formatting.RESET;
+        return "" + Formatting.AQUA + Formatting.BOLD + "[" + Formatting.RESET + Formatting.AQUA + "JEU" + Formatting.AQUA + Formatting.BOLD + "]" + Formatting.RESET;
     }
 
     public static void sendClientMessage(String message){
