@@ -19,7 +19,7 @@ public class ModMenuIntegration implements ModMenuApi {
             ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
             ConfigCategory general = builder.getOrCreateCategory(new TranslatableText("features"));
-            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Enable Skyblock Ids"), ConfigManager.showSkyblockIds)
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Enable Skyblock IDs"), ConfigManager.showSkyblockIds)
                     .setDefaultValue(true)
                     .setTooltip(new TranslatableText("Show Skyblock IDs of certain items in lore."))
                     .setSaveConsumer(newValue -> ConfigManager.showSkyblockIds = newValue)
@@ -35,6 +35,12 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setDefaultValue(true)
                     .setTooltip(new TranslatableText("Send a message and a sound when the HOTM Skymall perk has likely changed."))
                     .setSaveConsumer(newValue -> ConfigManager.skymallNotifEnabled = newValue)
+                    .build());
+
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Enable Item Info"), ConfigManager.showItemInfo)
+                    .setDefaultValue(true)
+                    .setTooltip(new TranslatableText("Show additional info on certain items in lore, such as timestamp, uuid, and origin."))
+                    .setSaveConsumer(newValue -> ConfigManager.showItemInfo = newValue)
                     .build());
 
             builder.setSavingRunnable(ConfigManager::saveConfig);
