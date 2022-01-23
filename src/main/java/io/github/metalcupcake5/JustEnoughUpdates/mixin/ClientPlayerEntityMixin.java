@@ -1,5 +1,6 @@
 package io.github.metalcupcake5.JustEnoughUpdates.mixin;
 
+import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.ChatUtils;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockChecker;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -13,9 +14,9 @@ public class ClientPlayerEntityMixin {
 
     @Inject(method = "dropSelectedItem", at = @At("HEAD"), cancellable = true)
     private void dropSelectedItem(boolean entireStack, CallbackInfoReturnable<Boolean> cir){
-        if(SkyblockChecker.inSkyblock) {
+        if(SkyblockChecker.inSkyblock && ConfigManager.dropProtectionEnabled) {
             cir.cancel();
-            ChatUtils.sendClientMessage("u cant drop items (no u cant disable this)");
+            ChatUtils.sendClientMessage("You've disabled dropping items!");
         }
     }
 }

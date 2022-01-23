@@ -1,7 +1,8 @@
 package io.github.metalcupcake5.JustEnoughUpdates;
 
+import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
 import io.github.metalcupcake5.JustEnoughUpdates.events.ItemTooltipEvent;
-import io.github.metalcupcake5.JustEnoughUpdates.utils.ChatUtils;
+import io.github.metalcupcake5.JustEnoughUpdates.events.TickEvent;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockChecker;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
@@ -9,19 +10,17 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.MessageType;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class JustEnoughUpdates implements ModInitializer {
+	public static final String MOD_ID = "justenoughupdates";
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LogManager.getLogger("test");
-	private static int TICKS = 0;
-	private static boolean skymall = false;
+	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
 	@Override
 	public void onInitialize() {
@@ -29,7 +28,7 @@ public class JustEnoughUpdates implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		ClientTickEvents.END_CLIENT_TICK.register(JustEnoughUpdates::onTick);
+		ClientTickEvents.END_CLIENT_TICK.register(TickEvent::onTick);
 
 		ClientCommandManager.DISPATCHER.register(ClientCommandManager
 			.literal("foo")
@@ -54,30 +53,11 @@ public class JustEnoughUpdates implements ModInitializer {
 		);
 
 		ItemTooltipCallback.EVENT.register((ItemTooltipEvent::onTooltip));
+
+		ConfigManager.loadConfig();
 	}
 
 
-	public static void onTick(MinecraftClient client) {
-		if (client == null) return;
 
-		TICKS++;
-		if (TICKS % 20 == 0) {
-			if (client.world != null && !client.isInSingleplayer())
-				SkyblockChecker.check();
-			TICKS = 0;
-			//ChatUtils.sendClientMessage(Formatting.BOLD + "hi");
-			if(SkyblockChecker.inDwarvenMines) {
-				String time = "12:00am";
-				if (SkyblockChecker.time.equals(time) && !skymall) {
-					ChatUtils.sendClientMessage("skymall changed");
-					client.player.playSound(SoundEvents.BLOCK_NOTE_BLOCK_BELL, 100, 1);
-					skymall = true;
-				}
-				if (!SkyblockChecker.time.equals(time) && skymall) {
-					skymall = false;
-				}
-			}
-		}
-	}
 
 }
