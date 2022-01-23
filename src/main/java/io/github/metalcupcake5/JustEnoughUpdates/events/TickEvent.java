@@ -1,5 +1,6 @@
 package io.github.metalcupcake5.JustEnoughUpdates.events;
 
+import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.ChatUtils;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockChecker;
 import net.minecraft.client.MinecraftClient;
@@ -17,7 +18,7 @@ public class TickEvent {
                 SkyblockChecker.check();
             TICKS = 0;
             //ChatUtils.sendClientMessage(Formatting.BOLD + "hi");
-            if(SkyblockChecker.inDwarvenMines) {
+            if(SkyblockChecker.inDwarvenMines && ConfigManager.skymallNotifEnabled) {
                 String time = "12:00am";
                 if (SkyblockChecker.time.equals(time) && !skymall) {
                     ChatUtils.sendClientMessage("skymall changed");
