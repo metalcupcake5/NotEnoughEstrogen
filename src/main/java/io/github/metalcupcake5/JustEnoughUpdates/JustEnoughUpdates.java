@@ -1,5 +1,6 @@
 package io.github.metalcupcake5.JustEnoughUpdates;
 
+import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
 import io.github.metalcupcake5.JustEnoughUpdates.events.ItemTooltipEvent;
 import io.github.metalcupcake5.JustEnoughUpdates.events.TickEvent;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockChecker;
@@ -52,6 +53,8 @@ public class JustEnoughUpdates implements ModInitializer {
 		);
 
 		ItemTooltipCallback.EVENT.register((ItemTooltipEvent::onTooltip));
+
+		ConfigManager.loadConfig();
 	}
 
 
