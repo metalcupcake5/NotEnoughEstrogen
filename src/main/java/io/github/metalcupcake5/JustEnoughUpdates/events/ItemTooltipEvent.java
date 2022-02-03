@@ -1,6 +1,7 @@
 package io.github.metalcupcake5.JustEnoughUpdates.events;
 
 import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
+import io.github.metalcupcake5.JustEnoughUpdates.utils.ItemUtils;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -11,11 +12,7 @@ import java.util.List;
 
 public class ItemTooltipEvent {
     public static void onTooltip(ItemStack stack, TooltipContext context, List<Text> lines){
-        NbtCompound itemNBT = stack.getNbt();
-        if(itemNBT == null){
-            return;
-        }
-        NbtCompound attributes = itemNBT.getCompound("ExtraAttributes");
+        NbtCompound attributes = ItemUtils.getSkyblockData(stack);
         if(attributes == null){
             return;
         }
