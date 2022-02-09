@@ -22,7 +22,7 @@ public class SkyblockChecker {
     public static boolean inDwarvenMines = false;
     public static String location = "";
     public static String time = "";
-    public static List<String> commissions = new ArrayList<>();
+    public static List<Commission> commissions = new ArrayList<>();
 
     public static void check() {
         List<String> sidebar = getSidebar();
@@ -95,16 +95,17 @@ public class SkyblockChecker {
         return false;
     }
 
-    private static List<String> getCommissions(List<PlayerListEntry> players){
+    private static List<Commission> getCommissions(List<PlayerListEntry> players){
         MinecraftClient client = MinecraftClient.getInstance();
-        List<String> comms = new ArrayList<>();
+        List<Commission> comms = new ArrayList<>();
         for (PlayerListEntry player : players) {
             Text name = client.inGameHud.getPlayerListHud().getPlayerName(player);
             List<Text> list = name.getSiblings();
             if(!list.isEmpty() && list.size() > 2) {
                 if(Commissions.isCommission(list.get(1).asString())){
-                    comms.add(list.get(1).asString());
-                    //comms.put(, list.get(2).asString());
+                    String commission = list.get(1).asString().trim();
+                    String completion = list.get(2).asString();
+                    comms.add(new Commission(commission.substring(0, commission.length() - 1), completion));
                 }
             }
 
