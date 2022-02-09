@@ -9,7 +9,15 @@ public class Commission {
         this.percent = percent;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
+    public String getPercent(){
+        return this.percent;
+    }
+
     public String toString(){
-        return name + " at " + percent + " completion";
+        return this.name + " at " + this.percent + " completion";
     }
 }
