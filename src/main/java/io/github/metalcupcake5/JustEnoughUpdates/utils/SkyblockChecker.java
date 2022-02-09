@@ -79,6 +79,11 @@ public class SkyblockChecker {
         return lines;
     }
 
+    private static List<PlayerListEntry> getTabList(){
+        MinecraftClient client = MinecraftClient.getInstance();
+        return client.player.networkHandler.getPlayerList().stream().toList();
+    }
+
     private static boolean isInDwarvenMines(String locationLine) {
         for(SkyblockLocations loc: SkyblockLocations.values()){
             if(locationLine.contains(loc.s)) return true;
