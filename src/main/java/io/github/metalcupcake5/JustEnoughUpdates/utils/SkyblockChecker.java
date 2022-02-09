@@ -3,10 +3,12 @@ package io.github.metalcupcake5.JustEnoughUpdates.utils;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.text.Text;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -20,6 +22,7 @@ public class SkyblockChecker {
     public static boolean inDwarvenMines = false;
     public static String location = "";
     public static String time = "";
+    public static List<String> commissions = new ArrayList<>();
 
     public static void check() {
         List<String> sidebar = getSidebar();
@@ -34,6 +37,7 @@ public class SkyblockChecker {
                 locationArray.remove(0);
                 location = String.join(" ", locationArray);
                 inDwarvenMines = isInDwarvenMines(location);
+                commissions = inDwarvenMines ? getCommissions(getTabList()) : new ArrayList<>();
 
                 ArrayList<String> timeArray = new ArrayList<>(Arrays.asList(sidebar.get(3).split(" ")));
                 if (!timeArray.isEmpty()) time = timeArray.get(1);
@@ -89,6 +93,23 @@ public class SkyblockChecker {
             if(locationLine.contains(loc.s)) return true;
         }
         return false;
+    }
+
+    private static List<String> getCommissions(List<PlayerListEntry> players){
+        MinecraftClient client = MinecraftClient.getInstance();
+        List<String> comms = new ArrayList<>();
+        for (PlayerListEntry player : players) {
+            Text name = client.inGameHud.getPlayerListHud().getPlayerName(player);
+            List<Text> list = name.getSiblings();
+            if(!list.isEmpty() && list.size() > 2) {
+                if(Commissions.isCommission(list.get(1).asString())){
+                    comms.add(list.get(1).asString());
+                    //comms.put(, list.get(2).asString());
+                }
+            }
+
+        }
+        return comms;
     }
 
 }
