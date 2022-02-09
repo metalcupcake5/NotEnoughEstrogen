@@ -43,6 +43,12 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> ConfigManager.showItemInfo = newValue)
                     .build());
 
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Show FPS"), ConfigManager.showFps)
+                    .setDefaultValue(false)
+                    .setTooltip(new TranslatableText("Probably gonna be removed later"))
+                    .setSaveConsumer(newValue -> ConfigManager.showFps = newValue)
+                    .build());
+
             builder.setSavingRunnable(ConfigManager::saveConfig);
 
             return builder.build();
