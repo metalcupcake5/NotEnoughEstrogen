@@ -38,8 +38,8 @@ public class InGameHudMixin extends DrawableHelper {
             for(int i = 0; i < comms.size(); i++){
                 Commission comm = comms.get(i);
                 String name = comm.getName();
-                String percent = comm.getPercent();
-                Text fps = Text.of(name + ": " + percent);
+                String progress = comm.getProgress();
+                Text fps = Text.of(name + ": " + progress);
                 int fpsCounterWidth = client.textRenderer.getWidth(fps);
 
                 fill(matrixStack, baseX, baseY+ (10 * i), fpsCounterWidth + 6 + baseX, 10 + baseY + (10 * i), MathHelper.ceil((255.0D * client.options.textBackgroundOpacity)) << 24);
