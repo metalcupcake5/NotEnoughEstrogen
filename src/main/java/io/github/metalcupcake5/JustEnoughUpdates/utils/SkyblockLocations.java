@@ -13,6 +13,7 @@ public enum SkyblockLocations {
     GOBLIN_BURROWS("Goblin Burrows"),
     GREAT_ICE_WALL("Great Ice Wall"),
     ARISTOCRAT_PASSAGE("Aristocrat Passage"),
+    DIVANS_GATEWAY("Divan's Gateway"),
 
     // dwarven mines king area
     ROYAL_PALACE("Royal Palace"),
