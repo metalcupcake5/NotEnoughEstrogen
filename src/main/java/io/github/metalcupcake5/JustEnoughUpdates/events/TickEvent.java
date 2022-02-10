@@ -33,12 +33,14 @@ public class TickEvent {
                     }
                 }
 
-                if ((SkyblockChecker.day + 1) % 7 == 0 && !cult){
-                    ChatUtils.sendClientMessage("cult is soon");
-                    cult = true;
-                }
-                if (!((SkyblockChecker.day + 1) % 7 == 0) && cult) {
-                    cult = false;
+                if(ConfigManager.cultReminder) {
+                    if ((SkyblockChecker.day + 1) % 7 == 0 && !cult){
+                        ChatUtils.sendClientMessage("cult is soon");
+                        cult = true;
+                    }
+                    if (!((SkyblockChecker.day + 1) % 7 == 0) && cult) {
+                        cult = false;
+                    }
                 }
             }
         }

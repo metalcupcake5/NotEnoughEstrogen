@@ -22,6 +22,8 @@ public class ConfigManager {
     public static boolean skymallNotifEnabled = true;
     public static boolean showItemInfo = true;
     public static boolean showFps = false;
+    public static boolean cultReminder = false;
+    public static int cultReminderTime = 0;
 
     public static final Path CONFIG = FabricLoader.getInstance().getConfigDir().resolve("justenoughupdates.json");
 
@@ -42,6 +44,8 @@ public class ConfigManager {
         config.addProperty("skymallNotifEnabled", skymallNotifEnabled);
         config.addProperty("showItemInfo", showItemInfo);
         config.addProperty("showFps", showFps);
+        config.addProperty("cultReminder", cultReminder);
+        config.addProperty("cultReminderTime", cultReminderTime);
         try {
             Files.write(CONFIG, gson.toJson(config).getBytes());
         } catch (IOException e) {
@@ -63,6 +67,8 @@ public class ConfigManager {
             skymallNotifEnabled = json.get("skymallNotifEnabled").getAsBoolean();
             showItemInfo = json.get("showItemInfo").getAsBoolean();
             showFps = json.get("showFps").getAsBoolean();
+            cultReminder = json.get("cultReminder").getAsBoolean();
+            cultReminderTime = json.get("cultReminderTime").getAsInt();
         } catch (JsonSyntaxException | NullPointerException e) {
             JustEnoughUpdates.LOGGER.warn("Malformed Json, Fixing");
             fix = true;
