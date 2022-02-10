@@ -23,7 +23,9 @@ public class ConfigManager {
     public static boolean showItemInfo = true;
     public static boolean showFps = false;
     public static boolean cultReminder = false;
-    public static int cultReminderTime = 0;
+    public static String cultReminderTime = "";
+
+    public static final String[] cultReminderTimeList = new String[]{"12:00pm", "11:00pm", "11:30pm"};
 
     public static final Path CONFIG = FabricLoader.getInstance().getConfigDir().resolve("justenoughupdates.json");
 
@@ -68,7 +70,7 @@ public class ConfigManager {
             showItemInfo = json.get("showItemInfo").getAsBoolean();
             showFps = json.get("showFps").getAsBoolean();
             cultReminder = json.get("cultReminder").getAsBoolean();
-            cultReminderTime = json.get("cultReminderTime").getAsInt();
+            cultReminderTime = json.get("cultReminderTime").getAsString();
         } catch (JsonSyntaxException | NullPointerException e) {
             JustEnoughUpdates.LOGGER.warn("Malformed Json, Fixing");
             fix = true;
