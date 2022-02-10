@@ -20,6 +20,8 @@ public class SkyblockChecker {
     public static boolean inDwarvenMines = false;
     public static String location = "";
     public static String time = "";
+    public static String season = "";
+    public static int day = 1;
 
     public static void check() {
         List<String> sidebar = getSidebar();
@@ -29,14 +31,18 @@ public class SkyblockChecker {
             inSkyblock = sidebar.get(0).contains("SKYBLOCK");
 
             if(inSkyblock) {
+                ArrayList<String> timeArray = new ArrayList<>(Arrays.asList(sidebar.get(3).split(" ")));
+                if (!timeArray.isEmpty()) time = timeArray.get(1);
+
                 ArrayList<String> locationArray = new ArrayList<>(Arrays.asList(sidebar.get(4).split(" ")));
                 locationArray.remove(0);
                 locationArray.remove(0);
                 location = String.join(" ", locationArray);
                 inDwarvenMines = isInDwarvenMines(location);
 
-                ArrayList<String> timeArray = new ArrayList<>(Arrays.asList(sidebar.get(3).split(" ")));
-                if (!timeArray.isEmpty()) time = timeArray.get(1);
+                ArrayList<String> dateArray = new ArrayList<>(Arrays.asList(sidebar.get(2).split(" ")));
+                season = dateArray.get(1);
+                day = Integer.parseInt(dateArray.get(2).split("([A-z])\\w+")[0]);
             }
         } else {
             inSkyblock = false;
