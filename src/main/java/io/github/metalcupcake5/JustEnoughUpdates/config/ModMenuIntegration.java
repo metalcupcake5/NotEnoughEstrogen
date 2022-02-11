@@ -49,6 +49,18 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> ConfigManager.showFps = newValue)
                     .build());
 
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Enable Cult of the Fallen Ass Reminder"), ConfigManager.cultReminder)
+                    .setDefaultValue(false)
+                    .setTooltip(new TranslatableText("Remind you when the Cult of the Fallen Star meeting is approaching"))
+                    .setSaveConsumer(newValue -> ConfigManager.cultReminder = newValue)
+                    .build());
+
+            general.addEntry(entryBuilder.startSelector(new TranslatableText("Cult of the Fallen Star Reminder Time"), ConfigManager.cultReminderTimeList, ConfigManager.cultReminderTime)
+                    .setDefaultValue("11:30pm")
+                    .setTooltip(new TranslatableText("Change the time for Cult of the Fallen Star meeting reminder"))
+                    .setSaveConsumer(newValue -> ConfigManager.cultReminderTime = newValue)
+                    .build());
+
             builder.setSavingRunnable(ConfigManager::saveConfig);
 
             return builder.build();
