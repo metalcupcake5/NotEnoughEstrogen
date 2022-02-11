@@ -42,7 +42,8 @@ public class SkyblockChecker {
 
                 ArrayList<String> dateArray = new ArrayList<>(Arrays.asList(sidebar.get(2).split(" ")));
                 season = dateArray.get(1);
-                day = Integer.parseInt(dateArray.get(2).split("([A-z])\\w+")[0]);
+                String[] splitDate = sidebar.get(2).split("([A-z])\\w+");
+                day = Integer.parseInt(splitDate[splitDate.length - 1].trim());
             }
         } else {
             inSkyblock = false;

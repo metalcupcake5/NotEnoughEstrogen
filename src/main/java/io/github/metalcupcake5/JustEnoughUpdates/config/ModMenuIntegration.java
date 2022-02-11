@@ -55,9 +55,9 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> ConfigManager.cultReminder = newValue)
                     .build());
 
-            general.addEntry(entryBuilder.startSelector(new TranslatableText("test"), ConfigManager.cultReminderTimeList, ConfigManager.cultReminderTime)
+            general.addEntry(entryBuilder.startSelector(new TranslatableText("Cult of the Fallen Star Reminder Time"), ConfigManager.cultReminderTimeList, ConfigManager.cultReminderTime)
                     .setDefaultValue("11:30pm")
-                    .setTooltip(new TranslatableText("yeah"))
+                    .setTooltip(new TranslatableText("Change the time for Cult of the Fallen Star meeting reminder"))
                     .setSaveConsumer(newValue -> ConfigManager.cultReminderTime = newValue)
                     .build());
 

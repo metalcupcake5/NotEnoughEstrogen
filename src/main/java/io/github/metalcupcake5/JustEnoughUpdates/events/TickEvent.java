@@ -34,11 +34,11 @@ public class TickEvent {
                 }
 
                 if(ConfigManager.cultReminder) {
-                    if ((SkyblockChecker.day + 1) % 7 == 0 && !cult){
+                    if (!cult && SkyblockChecker.time.equals(ConfigManager.cultReminderTime) && (SkyblockChecker.day + 1) % 7 == 0) {
                         ChatUtils.sendClientMessage("cult is soon");
                         cult = true;
                     }
-                    if (!((SkyblockChecker.day + 1) % 7 == 0) && cult) {
+                    if (!((SkyblockChecker.day + 1) % 7 == 0) && cult && !SkyblockChecker.time.equals(ConfigManager.cultReminderTime)) {
                         cult = false;
                     }
                 }
