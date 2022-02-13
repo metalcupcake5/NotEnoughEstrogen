@@ -46,7 +46,6 @@ public class SkyblockChecker {
                 ArrayList<String> timeArray = new ArrayList<>(Arrays.asList(sidebar.get(3).split(" ")));
                 if (!timeArray.isEmpty()) time = timeArray.get(1);
             } else {
-                inSkyblock = false;
                 inDwarvenMines = false;
                 commissions = new ArrayList<>();
             }
