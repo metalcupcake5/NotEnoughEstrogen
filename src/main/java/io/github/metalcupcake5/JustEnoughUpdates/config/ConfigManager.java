@@ -25,7 +25,7 @@ public class ConfigManager {
     public static boolean cultReminder = false;
     public static String cultReminderTime = "";
 
-    public static final String[] cultReminderTimeList = new String[]{"12:00pm", "11:00pm", "11:30pm"};
+    public static final String[] cultReminderTimeList = new String[]{"0:0", "23:00", "23:30"};
 
     public static final Path CONFIG = FabricLoader.getInstance().getConfigDir().resolve("justenoughupdates.json");
 
