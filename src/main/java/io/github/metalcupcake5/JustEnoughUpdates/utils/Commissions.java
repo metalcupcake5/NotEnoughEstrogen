@@ -86,9 +86,9 @@ public enum Commissions {
         return false;
     }
 
-    public static Commissions getCommissionFromName(String name){
+    public static Commissions getCommissionFromName(String name, int location){
         for(Commissions comm : Commissions.values()){
-            if(comm.s.equals(name)){
+            if(comm.name.equals(name) && comm.location == location){
                 return comm;
             }
         }
