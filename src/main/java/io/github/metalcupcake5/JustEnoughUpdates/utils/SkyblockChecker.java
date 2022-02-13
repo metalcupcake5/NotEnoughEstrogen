@@ -36,7 +36,7 @@ public class SkyblockChecker {
                 locationArray.remove(0);
                 locationArray.remove(0);
                 location = String.join(" ", locationArray);
-                inDwarvenMines = isInDwarvenMines(location);
+                inDwarvenMines = !SkyblockLocations.getLocationFromName(location).equals("Unknown");
                 commissions = inDwarvenMines ? getCommissions(getTabList()) : new ArrayList<>();
 
                 ArrayList<String> timeArray = new ArrayList<>(Arrays.asList(sidebar.get(3).split(" ")));
@@ -88,13 +88,6 @@ public class SkyblockChecker {
         return client.player.networkHandler.getPlayerList().stream().toList();
     }
 
-    private static boolean isInDwarvenMines(String locationLine) {
-        for(SkyblockLocations loc: SkyblockLocations.values()){
-            if(locationLine.contains(loc.s)) return true;
-        }
-        return false;
-    }
-
     private static List<Commission> getCommissions(List<PlayerListEntry> players){
         MinecraftClient client = MinecraftClient.getInstance();
         List<Commission> comms = new ArrayList<>();
@@ -105,7 +98,7 @@ public class SkyblockChecker {
                 if(Commissions.isCommission(list.get(1).asString())){
                     String commission = list.get(1).asString().trim();
                     String completion = list.get(2).asString();
-                    comms.add(new Commission(commission.substring(0, commission.length() - 1), completion));
+                    comms.add(new Commission(commission.substring(0, commission.length() - 1), completion, SkyblockLocations.getLocationFromName(location).equals("Dwarven Mines") ? 0 : 1));
                 }
             }
 
