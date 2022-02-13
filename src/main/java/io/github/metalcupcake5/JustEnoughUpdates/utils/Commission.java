@@ -1,10 +1,10 @@
 package io.github.metalcupcake5.JustEnoughUpdates.utils;
 
 public class Commission {
-    private String name;
-    private double percent;
-    private String progress;
-    private int location;
+    private final String name;
+    private final double percent;
+    private final String progress;
+    private final int location;
 
     public Commission(String name, String percent, int location){
         this.name = name;
@@ -13,7 +13,7 @@ public class Commission {
             this.progress = "Done!";
         } else {
             this.percent = Double.parseDouble(percent.substring(0, percent.length() - 1)) / 100;
-            int total = Commissions.getCommissionFromName(name, location).total;
+            int total = Commissions.getCommission(name, location).total;
             this.progress = (int) (this.percent * total) + "/" + total;
         }
         this.location = location;
