@@ -18,7 +18,7 @@ public class TickEvent {
             if (client.world != null && !client.isInSingleplayer())
                 SkyblockChecker.check();
             TICKS = 0;
-            //ChatUtils.sendClientMessage(Formatting.BOLD + "hi");
+            //System.out.println(SkyblockTime.getCurrentMonth() + " " + SkyblockTime.getCurrentDay() + " " + SkyblockTime.getCurrentTime());
             if(SkyblockChecker.inDwarvenMines) {
                 if (ConfigManager.skymallNotifEnabled) {
                     String time = "12:00am";
