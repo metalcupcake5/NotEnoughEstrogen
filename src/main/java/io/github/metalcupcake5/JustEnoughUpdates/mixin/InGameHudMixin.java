@@ -31,19 +31,21 @@ public class InGameHudMixin extends DrawableHelper {
             fill(matrixStack, x, y, fpsCounterWidth + 6 + x, 10 + y, MathHelper.ceil((255.0D * client.options.textBackgroundOpacity)) << 24);
             client.textRenderer.drawWithShadow(matrixStack, fps, 3 + x, 1 + y, 16777215);
         }
-        List<Commission> comms = SkyblockChecker.commissions;
-        if(!comms.isEmpty()){
-            int baseX = 1;
-            int baseY = 1;
-            for(int i = 0; i < comms.size(); i++){
-                Commission comm = comms.get(i);
-                String name = comm.getName();
-                String progress = comm.getProgress();
-                Text fps = Text.of(name + ": " + progress);
-                int fpsCounterWidth = client.textRenderer.getWidth(fps);
+        if(ConfigManager.showCommissions) {
+            List<Commission> comms = SkyblockChecker.commissions;
+            if (!comms.isEmpty()) {
+                int baseX = 1;
+                int baseY = 1;
+                for (int i = 0; i < comms.size(); i++) {
+                    Commission comm = comms.get(i);
+                    String name = comm.getName();
+                    String progress = comm.getProgress();
+                    Text fps = Text.of(name + ": " + progress);
+                    int fpsCounterWidth = client.textRenderer.getWidth(fps);
 
-                fill(matrixStack, baseX, baseY+ (10 * i), fpsCounterWidth + 6 + baseX, 10 + baseY + (10 * i), MathHelper.ceil((255.0D * client.options.textBackgroundOpacity)) << 24);
-                client.textRenderer.drawWithShadow(matrixStack, fps, 3 + baseX, 1 + baseY + (10 * i), 0xffffffff);
+                    fill(matrixStack, baseX, baseY + (10 * i), fpsCounterWidth + 6 + baseX, 10 + baseY + (10 * i), MathHelper.ceil((255.0D * client.options.textBackgroundOpacity)) << 24);
+                    client.textRenderer.drawWithShadow(matrixStack, fps, 3 + baseX, 1 + baseY + (10 * i), 0xffffffff);
+                }
             }
         }
     }
