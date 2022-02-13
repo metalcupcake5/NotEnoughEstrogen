@@ -2,6 +2,7 @@ package io.github.metalcupcake5.JustEnoughUpdates.utils;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdates;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.scoreboard.Scoreboard;
@@ -32,27 +33,34 @@ public class SkyblockChecker {
             inDwarvenMines = false;
             commissions = new ArrayList<>();
         }
-        if (sidebar.get(sidebar.size() - 1).equals("www.hypixel.net")) {
-            inSkyblock = sidebar.get(0).contains("SKYBLOCK");
+        try {
+            if (sidebar.get(sidebar.size() - 1).equals("www.hypixel.net")) {
+                inSkyblock = sidebar.get(0).contains("SKYBLOCK");
 
-            if(inSkyblock) {
-                ArrayList<String> locationArray = new ArrayList<>(Arrays.asList(sidebar.get(4).split(" ")));
-                locationArray.remove(0);
-                locationArray.remove(0);
-                location = String.join(" ", locationArray);
-                inDwarvenMines = !SkyblockLocations.getLocationFromName(location).equals("Unknown");
-                commissions = inDwarvenMines ? getCommissions(getTabList()) : new ArrayList<>();
+                if (inSkyblock) {
+                    ArrayList<String> locationArray = new ArrayList<>(Arrays.asList(sidebar.get(4).split(" ")));
+                    locationArray.remove(0);
+                    locationArray.remove(0);
+                    location = String.join(" ", locationArray);
+                    inDwarvenMines = !SkyblockLocations.getLocationFromName(location).equals("Unknown");
+                    commissions = inDwarvenMines ? getCommissions(getTabList()) : new ArrayList<>();
 
-                ArrayList<String> timeArray = new ArrayList<>(Arrays.asList(sidebar.get(3).split(" ")));
-                if (!timeArray.isEmpty()) time = timeArray.get(1);
+                    ArrayList<String> timeArray = new ArrayList<>(Arrays.asList(sidebar.get(3).split(" ")));
+                    if (!timeArray.isEmpty()) time = timeArray.get(1);
+                } else {
+                    inDwarvenMines = false;
+                    commissions = new ArrayList<>();
+                }
             } else {
+                inSkyblock = false;
                 inDwarvenMines = false;
                 commissions = new ArrayList<>();
             }
-        } else {
+        } catch (IndexOutOfBoundsException e) {
             inSkyblock = false;
             inDwarvenMines = false;
             commissions = new ArrayList<>();
+            JustEnoughUpdates.LOGGER.error("Could not parse sidebar correctly!", e);
         }
     }
 
