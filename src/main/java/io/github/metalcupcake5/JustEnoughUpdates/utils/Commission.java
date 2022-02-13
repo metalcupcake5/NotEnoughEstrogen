@@ -31,6 +31,10 @@ public class Commission {
         return this.progress;
     }
 
+    public int getLocation() {
+        return this.location;
+    }
+
     public String toString(){
         return this.name + " at " + this.percent + " completion";
     }
