@@ -27,7 +27,11 @@ public class SkyblockChecker {
     public static void check() {
         List<String> sidebar = getSidebar();
 
-        if (sidebar.isEmpty()) return;
+        if (sidebar.isEmpty()){
+            inSkyblock = false;
+            inDwarvenMines = false;
+            commissions = new ArrayList<>();
+        }
         if (sidebar.get(sidebar.size() - 1).equals("www.hypixel.net")) {
             inSkyblock = sidebar.get(0).contains("SKYBLOCK");
 
@@ -41,10 +45,15 @@ public class SkyblockChecker {
 
                 ArrayList<String> timeArray = new ArrayList<>(Arrays.asList(sidebar.get(3).split(" ")));
                 if (!timeArray.isEmpty()) time = timeArray.get(1);
+            } else {
+                inSkyblock = false;
+                inDwarvenMines = false;
+                commissions = new ArrayList<>();
             }
         } else {
             inSkyblock = false;
             inDwarvenMines = false;
+            commissions = new ArrayList<>();
         }
     }
 
