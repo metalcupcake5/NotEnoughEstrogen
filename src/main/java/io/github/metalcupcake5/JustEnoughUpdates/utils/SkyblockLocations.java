@@ -46,9 +46,9 @@ public enum SkyblockLocations {
     GOBLIN_HOLDOUT("Goblin Holdout"),
     GOBLIN_QUEENS_DEN("Goblin Queen's Den");
 
-    public final String s;
+    public final String name;
 
-    SkyblockLocations(String s) {
-        this.s = s;
+    SkyblockLocations(String name) {
+        this.name = name;
     }
 }
