@@ -28,7 +28,7 @@ public class SkyblockTime {
         double currentDayOffset = (currentMonthOffset - currentDay * DAY_S) % DAY_S;
         int currentHour = (int) Math.floor(currentDayOffset / HOUR_S);
         int currentMinute = (int) Math.floor((currentDayOffset - currentHour * HOUR_S) / HOUR_S * 60);
-        return currentHour + ":" + currentMinute;
+        return currentHour + ":" + currentMinute/10*10;
     }
 
     public static int getCurrentDay() {
