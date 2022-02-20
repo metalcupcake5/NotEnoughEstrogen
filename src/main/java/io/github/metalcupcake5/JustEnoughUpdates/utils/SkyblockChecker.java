@@ -26,6 +26,7 @@ public class SkyblockChecker {
     public static List<Commission> commissions = new ArrayList<>();
 
     public static void check() {
+        MinecraftClient client = MinecraftClient.getInstance();
         List<String> sidebar = getSidebar();
 
         if (sidebar.isEmpty()){
@@ -38,11 +39,14 @@ public class SkyblockChecker {
                 inSkyblock = sidebar.get(0).contains("SKYBLOCK");
 
                 if (inSkyblock) {
-                    ArrayList<String> locationArray = new ArrayList<>(Arrays.asList(sidebar.get(4).split(" ")));
-                    locationArray.remove(0);
-                    locationArray.remove(0);
-                    location = String.join(" ", locationArray);
-                    inDwarvenMines = !SkyblockLocations.getLocationFromName(location).equals("Unknown");
+                    for (PlayerListEntry player : getTabList()) {
+                        Text name = client.inGameHud.getPlayerListHud().getPlayerName(player);
+                        List<Text> list = name.getSiblings();
+                        if(!list.isEmpty() && list.get(0).asString().contains("Area")) {
+                            location = list.get(1).asString();
+                        }
+                    }
+                    inDwarvenMines = location.contains("Dwarven Mines") || location.contains("Crystal Hollows");
                     commissions = inDwarvenMines ? getCommissions(getTabList()) : new ArrayList<>();
 
                     ArrayList<String> timeArray = new ArrayList<>(Arrays.asList(sidebar.get(3).split(" ")));
@@ -60,7 +64,7 @@ public class SkyblockChecker {
             inSkyblock = false;
             inDwarvenMines = false;
             commissions = new ArrayList<>();
-            JustEnoughUpdates.LOGGER.error("Could not parse sidebar correctly!", e);
+            JustEnoughUpdates.LOGGER.error("Could not parse sidebar or tablist correctly!", e);
         }
     }
 
@@ -114,7 +118,7 @@ public class SkyblockChecker {
                 if(Commissions.isCommission(list.get(1).asString())){
                     String commission = list.get(1).asString().trim();
                     String completion = list.get(2).asString();
-                    comms.add(new Commission(commission.substring(0, commission.length() - 1), completion, SkyblockLocations.getLocationFromName(location).equals("Dwarven Mines") ? 0 : 1));
+                    comms.add(new Commission(commission.substring(0, commission.length() - 1), completion, location.equals("Dwarven Mines") ? 0 : 1));
                 }
             }
 
