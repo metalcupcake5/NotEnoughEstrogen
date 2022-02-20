@@ -66,7 +66,7 @@ public enum Commissions {
     THYST("Thyst Slayer", 5, 1),
 
     //other
-    CHEST("Open 3 chests", 3, 1),
+    CHEST("Chest Looter", 3, 1),
     HARD_STONE("Hard Stone Miner", 1000, 1),
 
     UNKOWN("Unknown", 1, 1);
