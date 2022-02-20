@@ -49,24 +49,25 @@ public enum Commissions {
     TOPAZ_CRYSTAL("Topaz Crystal Hunter", 1, 1),
 
     //gemstone
-    JADE_GEMSTONE("Jade Gemstone Collector", 1, 1),
-    AMBER_GEMSTONE("Amber Gemstone Collector", 1, 1),
-    AMETHYST_GEMSTONE("Amethyst Gemstone Collector", 1, 1),
-    SAPPHIRE_GEMSTONE("Sapphire Gemstone Collector", 1, 1),
-    TOPAZ_GEMSTONE("Topaz Gemstone Collector", 1, 1),
+    JADE_GEMSTONE("Jade Gemstone Collector", 1000, 1),
+    AMBER_GEMSTONE("Amber Gemstone Collector", 1000, 1),
+    AMETHYST_GEMSTONE("Amethyst Gemstone Collector", 1000, 1),
+    SAPPHIRE_GEMSTONE("Sapphire Gemstone Collector", 1000, 1),
+    TOPAZ_GEMSTONE("Topaz Gemstone Collector", 1000, 1),
+    RUBY_GEMSTONE("Ruby Gemstone Collector", 1000, 1),
 
     //slayer
     AUTOMATON("Automaton Slayer", 13, 1),
     SLUDGE("Sludge Slayer", 25, 1),
     TEAM_TREASURITE("Team Treasurite Member Slayer", 13, 1),
     GOBLIN_HALLOWS("Goblin Slayer", 13, 1),
-    YOG("Slay 13 Yogs", 13, 1),
-    BOSS_CORLEONE("Slay 1 Boss Corleone", 1, 1),
-    THYST("Slay 5 Thysts", 5, 1),
+    YOG("Yog Slayer", 13, 1),
+    BOSS_CORLEONE("Boss Corleone Slayer", 1, 1),
+    THYST("Thyst Slayer", 5, 1),
 
     //other
     CHEST("Open 3 chests", 3, 1),
-    HARD_STONE("Mine 1,000 Hard Stone", 1000, 1),
+    HARD_STONE("Hard Stone Miner", 1000, 1),
 
     UNKOWN("Unknown", 1, 1);
 
