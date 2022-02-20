@@ -38,7 +38,7 @@ public enum SkyblockLocations {
     JUNGLE_TEMPLE("Jungle Temple", "Crystal Hallows"),
 
     PRECURSOR_REMNANTS("Precursor Remnants", "Crystal Hallows"),
-    PRECURSOR_CITY("Precursor City", "Crystal Hallows"),
+    PRECURSOR_CITY("Lost Precursor City", "Crystal Hallows"),
 
     MITHRIL_DEPOSITS("Mithril Deposits", "Crystal Hallows"),
     MINES_OF_DIVAN("Mines of Divan", "Crystal Hallows"),
