@@ -8,6 +8,7 @@ import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,11 +41,11 @@ public class InGameHudMixin extends DrawableHelper {
                     Commission comm = comms.get(i);
                     String name = comm.getName();
                     String progress = comm.getProgress();
-                    Text fps = Text.of(name + ": " + progress);
-                    int fpsCounterWidth = client.textRenderer.getWidth(fps);
+                    Text commissionText = Text.of(Formatting.WHITE + name + ": " + progress);
+                    int fpsCounterWidth = client.textRenderer.getWidth(commissionText);
 
                     fill(matrixStack, baseX, baseY + (10 * i), fpsCounterWidth + 6 + baseX, 10 + baseY + (10 * i), MathHelper.ceil((255.0D * client.options.textBackgroundOpacity)) << 24);
-                    client.textRenderer.drawWithShadow(matrixStack, fps, 3 + baseX, 1 + baseY + (10 * i), 0xffffffff);
+                    client.textRenderer.drawWithShadow(matrixStack, commissionText, 3 + baseX, 1 + baseY + (10 * i), 0xffffffff);
                 }
             }
         }
