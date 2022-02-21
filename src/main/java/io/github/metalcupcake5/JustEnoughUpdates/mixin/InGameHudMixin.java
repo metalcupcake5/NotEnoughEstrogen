@@ -29,8 +29,8 @@ public class InGameHudMixin extends DrawableHelper {
             int screenBorder = 30;
             int x = 1;
             int y = 1;
-            fill(matrixStack, x, y, fpsCounterWidth + 6 + x, 10 + y, MathHelper.ceil((255.0D * client.options.textBackgroundOpacity)) << 24);
-            client.textRenderer.drawWithShadow(matrixStack, fps, 3 + x, 1 + y, 16777215);
+            renderBackground(matrixStack, x, y, fpsCounterWidth + 6, 10);
+            renderText(matrixStack, fps, 3 + x, 1 + y);
         }
         if(ConfigManager.showCommissions) {
             List<Commission> comms = SkyblockChecker.commissions;
@@ -44,10 +44,20 @@ public class InGameHudMixin extends DrawableHelper {
                     Text commissionText = Text.of(Formatting.WHITE + name + ": " + progress);
                     int fpsCounterWidth = client.textRenderer.getWidth(commissionText);
 
-                    fill(matrixStack, baseX, baseY + (10 * i), fpsCounterWidth + 6 + baseX, 10 + baseY + (10 * i), MathHelper.ceil((255.0D * client.options.textBackgroundOpacity)) << 24);
-                    client.textRenderer.drawWithShadow(matrixStack, commissionText, 3 + baseX, 1 + baseY + (10 * i), 0xffffffff);
+                    renderBackground(matrixStack, baseX, baseY + (10 * i), fpsCounterWidth + 6, 10);
+                    renderText(matrixStack, commissionText, 3 + baseX, 1 + baseY + (10 * i));
                 }
             }
         }
+    }
+
+    public void renderText(MatrixStack matrixStack, Text text, int originX, int originY){
+        MinecraftClient client = MinecraftClient.getInstance();
+        client.textRenderer.drawWithShadow(matrixStack, text, originX, originY, 0xffffffff);
+    }
+
+    public void renderBackground(MatrixStack matrixStack, int originX, int originY, int width, int height){
+        MinecraftClient client = MinecraftClient.getInstance();
+        fill(matrixStack, originX, originY, originX + width, originY + height, MathHelper.ceil((255.0D * client.options.textBackgroundOpacity)) << 24);
     }
 }
