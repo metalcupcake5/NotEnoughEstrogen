@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(InGameHud.class)
@@ -37,15 +38,19 @@ public class InGameHudMixin extends DrawableHelper {
             if (!comms.isEmpty()) {
                 int baseX = 1;
                 int baseY = 1;
-                for (int i = 0; i < comms.size(); i++) {
-                    Commission comm = comms.get(i);
+                int longestWidth = 1;
+                ArrayList<Text> texts = new ArrayList<>();
+                for (Commission comm : comms) {
                     String name = comm.getName();
                     String progress = comm.getProgress();
                     Text commissionText = Text.of(Formatting.WHITE + name + ": " + progress);
-                    int fpsCounterWidth = client.textRenderer.getWidth(commissionText);
-
-                    renderBackground(matrixStack, baseX, baseY + (10 * i), fpsCounterWidth + 6, 10);
-                    renderText(matrixStack, commissionText, 3 + baseX, 1 + baseY + (10 * i));
+                    int width = client.textRenderer.getWidth(commissionText);
+                    longestWidth = Math.max(longestWidth, width);
+                    texts.add(commissionText);
+                }
+                renderBackground(matrixStack, baseX, baseY, longestWidth + 8, comms.size() * 10 + 8);
+                for(int i = 0; i < texts.size(); i++){
+                    renderText(matrixStack, texts.get(i), 4 + baseX, 5 + baseY + (10 * i));
                 }
             }
         }
