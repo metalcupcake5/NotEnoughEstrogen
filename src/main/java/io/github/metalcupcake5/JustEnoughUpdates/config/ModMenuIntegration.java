@@ -49,6 +49,12 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> ConfigManager.showFps = newValue)
                     .build());
 
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Show Commisions"), ConfigManager.showCommissions)
+                    .setDefaultValue(true)
+                    .setTooltip(new TranslatableText("Show Dwarven Mine and Crystal Hallows commissions on screen."))
+                    .setSaveConsumer(newValue -> ConfigManager.showCommissions = newValue)
+                    .build());
+
             general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Enable Cult of the Fallen Ass Reminder"), ConfigManager.cultReminder)
                     .setDefaultValue(false)
                     .setTooltip(new TranslatableText("Remind you when the Cult of the Fallen Star meeting is approaching"))

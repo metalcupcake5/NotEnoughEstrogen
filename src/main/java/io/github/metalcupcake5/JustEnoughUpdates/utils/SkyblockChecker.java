@@ -2,11 +2,14 @@ package io.github.metalcupcake5.JustEnoughUpdates.utils;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdates;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.text.Text;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,25 +22,49 @@ public class SkyblockChecker {
     public static boolean inSkyblock = false;
     public static boolean inDwarvenMines = false;
     public static String location = "";
+    public static String time = "";
+    public static List<Commission> commissions = new ArrayList<>();
 
     public static void check() {
+        MinecraftClient client = MinecraftClient.getInstance();
         List<String> sidebar = getSidebar();
 
-        if (sidebar.isEmpty()) return;
-        if (sidebar.get(sidebar.size() - 1).equals("www.hypixel.net")) {
-            inSkyblock = sidebar.get(0).contains("SKYBLOCK");
-
-            if(inSkyblock) {
-
-                ArrayList<String> locationArray = new ArrayList<>(Arrays.asList(sidebar.get(4).split(" ")));
-                locationArray.remove(0);
-                locationArray.remove(0);
-                location = String.join(" ", locationArray);
-                inDwarvenMines = isInDwarvenMines(location);
-            }
-        } else {
+        if (sidebar.isEmpty()){
             inSkyblock = false;
             inDwarvenMines = false;
+            commissions = new ArrayList<>();
+        }
+        try {
+            if (sidebar.get(sidebar.size() - 1).equals("www.hypixel.net")) {
+                inSkyblock = sidebar.get(0).contains("SKYBLOCK");
+
+                if (inSkyblock) {
+                    for (PlayerListEntry player : getTabList()) {
+                        Text name = client.inGameHud.getPlayerListHud().getPlayerName(player);
+                        List<Text> list = name.getSiblings();
+                        if(!list.isEmpty() && list.get(0).asString().contains("Area")) {
+                            location = list.get(1).asString();
+                        }
+                    }
+                    inDwarvenMines = location.contains("Dwarven Mines") || location.contains("Crystal Hollows");
+                    commissions = inDwarvenMines ? getCommissions(getTabList()) : new ArrayList<>();
+
+                    ArrayList<String> timeArray = new ArrayList<>(Arrays.asList(sidebar.get(3).split(" ")));
+                    if (!timeArray.isEmpty()) time = timeArray.get(1);
+                } else {
+                    inDwarvenMines = false;
+                    commissions = new ArrayList<>();
+                }
+            } else {
+                inSkyblock = false;
+                inDwarvenMines = false;
+                commissions = new ArrayList<>();
+            }
+        } catch (IndexOutOfBoundsException e) {
+            inSkyblock = false;
+            inDwarvenMines = false;
+            commissions = new ArrayList<>();
+            JustEnoughUpdates.LOGGER.error("Could not parse sidebar or tablist correctly!", e);
         }
     }
 
@@ -76,11 +103,27 @@ public class SkyblockChecker {
         return lines;
     }
 
-    private static boolean isInDwarvenMines(String locationLine) {
-        for(SkyblockLocations loc: SkyblockLocations.values()){
-            if(locationLine.contains(loc.s)) return true;
+    private static List<PlayerListEntry> getTabList(){
+        MinecraftClient client = MinecraftClient.getInstance();
+        return client.player.networkHandler.getPlayerList().stream().toList();
+    }
+
+    private static List<Commission> getCommissions(List<PlayerListEntry> players){
+        MinecraftClient client = MinecraftClient.getInstance();
+        List<Commission> comms = new ArrayList<>();
+        for (PlayerListEntry player : players) {
+            Text name = client.inGameHud.getPlayerListHud().getPlayerName(player);
+            List<Text> list = name.getSiblings();
+            if(!list.isEmpty() && list.size() > 2) {
+                if(Commissions.isCommission(list.get(1).asString())){
+                    String commission = list.get(1).asString().trim();
+                    String completion = list.get(2).asString();
+                    comms.add(new Commission(commission.substring(0, commission.length() - 1), completion, location.equals("Dwarven Mines") ? 0 : 1));
+                }
+            }
+
         }
-        return false;
+        return comms;
     }
 
 }

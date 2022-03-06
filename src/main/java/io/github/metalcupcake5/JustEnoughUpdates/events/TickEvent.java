@@ -34,7 +34,7 @@ public class TickEvent {
                 }
 
                 if(ConfigManager.cultReminder) {
-                    if (!cult && SkyblockTime.getCurrentTime().equals(ConfigManager.cultReminderTime) && (SkyblockTime.getCurrentDay() + 1) % 7 == 0) {
+                    if (!cult && SkyblockTime.getCurrentTime().equals(ConfigManager.cultReminderTime)) {
                         ChatUtils.sendClientMessage("cult is soon");
                         cult = true;
                     }
