@@ -1,6 +1,7 @@
 package io.github.metalcupcake5.JustEnoughUpdates.mixin;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.Drill;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.ItemUtils;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockChecker;
@@ -25,7 +26,7 @@ public abstract class ItemRendererMixin {
 
     @Inject(method = "renderGuiItemOverlay(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V", at = @At("HEAD"))
     private void renderGuiItemOverlay(TextRenderer renderer, ItemStack stack, int x, int y, @Nullable String countLabel, CallbackInfo ci){
-        if(SkyblockChecker.inSkyblock) {
+        if(SkyblockChecker.inSkyblock && ConfigManager.showDrillFuel) {
             NbtCompound data = ItemUtils.getSkyblockData(stack);
             if(data == null) return;
             if(!data.contains("drill_fuel")) return;
