@@ -23,16 +23,6 @@ public class InGameHudMixin extends DrawableHelper {
     @Inject(method = "render", at = @At("HEAD"))
     public void render(MatrixStack matrixStack, float tickDelta, CallbackInfo ci){
         MinecraftClient client = MinecraftClient.getInstance();
-        if(ConfigManager.showFps) {
-            Text fps = Text.of("fps: " + client.fpsDebugString.split(" fps")[0].trim());
-            int fpsCounterWidth = client.textRenderer.getWidth(fps);
-
-            int screenBorder = 30;
-            int x = 1;
-            int y = 1;
-            renderBackground(matrixStack, x, y, fpsCounterWidth + 6, 10);
-            renderText(matrixStack, fps, 3 + x, 1 + y);
-        }
         if(ConfigManager.showCommissions) {
             List<Commission> comms = SkyblockChecker.commissions;
             if (!comms.isEmpty()) {

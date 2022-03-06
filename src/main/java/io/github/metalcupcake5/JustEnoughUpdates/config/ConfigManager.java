@@ -21,7 +21,6 @@ public class ConfigManager {
     public static boolean dropProtectionEnabled = true;
     public static boolean skymallNotifEnabled = true;
     public static boolean showItemInfo = true;
-    public static boolean showFps = false;
     public static boolean cultReminder = false;
     public static String cultReminderTime = "";
 
@@ -46,7 +45,6 @@ public class ConfigManager {
         config.addProperty("dropProtectionEnabled", dropProtectionEnabled);
         config.addProperty("skymallNotifEnabled", skymallNotifEnabled);
         config.addProperty("showItemInfo", showItemInfo);
-        config.addProperty("showFps", showFps);
         config.addProperty("showCommissions", showCommissions);
         config.addProperty("cultReminder", cultReminder);
         config.addProperty("cultReminderTime", cultReminderTime);
@@ -70,7 +68,6 @@ public class ConfigManager {
             dropProtectionEnabled = json.get("dropProtectionEnabled").getAsBoolean();
             skymallNotifEnabled = json.get("skymallNotifEnabled").getAsBoolean();
             showItemInfo = json.get("showItemInfo").getAsBoolean();
-            showFps = json.get("showFps").getAsBoolean();
             cultReminder = json.get("cultReminder").getAsBoolean();
             cultReminderTime = json.get("cultReminderTime").getAsString();
             showCommissions = json.get("showCommissions").getAsBoolean();

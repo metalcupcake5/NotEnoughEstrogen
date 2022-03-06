@@ -43,12 +43,6 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> ConfigManager.showItemInfo = newValue)
                     .build());
 
-            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Show FPS"), ConfigManager.showFps)
-                    .setDefaultValue(false)
-                    .setTooltip(new TranslatableText("Probably gonna be removed later"))
-                    .setSaveConsumer(newValue -> ConfigManager.showFps = newValue)
-                    .build());
-
             general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Show Commisions"), ConfigManager.showCommissions)
                     .setDefaultValue(true)
                     .setTooltip(new TranslatableText("Show Dwarven Mine and Crystal Hallows commissions on screen."))
