@@ -5,22 +5,6 @@ import java.util.List;
 public class Drill {
     public int currentFuel;
     public int maxFuel;
-    public String fuelTank;
-    public String drillEngine;
-    public String upgradeModule;
-
-    public Drill(int currentFuel, int maxFuel) {
-        this.currentFuel = currentFuel;
-        this.maxFuel = maxFuel;
-    }
-
-    public Drill(int currentFuel, int maxFuel, String fuelTank, String drillEngine, String upgradeModule) {
-        this.currentFuel = currentFuel;
-        this.maxFuel = maxFuel;
-        this.fuelTank = fuelTank;
-        this.drillEngine = drillEngine;
-        this.upgradeModule = upgradeModule;
-    }
 
     public Drill(List<String> lore) {
         this.maxFuel = 3000;
@@ -31,9 +15,5 @@ public class Drill {
                 break;
             }
         }
-    }
-
-    public double getFuelPercentage(){
-        return currentFuel/(double) maxFuel;
     }
 }
