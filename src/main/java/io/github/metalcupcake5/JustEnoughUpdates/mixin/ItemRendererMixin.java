@@ -48,7 +48,6 @@ public abstract class ItemRendererMixin {
             this.renderGuiQuad(buffer, x + 2, y + 13, 13, 2, 0,0,0,255);
             this.renderGuiQuad(buffer, x + 2, y + 13, width, 1, rgb >> 16 & 255, rgb >> 8 & 255, rgb & 255, 255);
             RenderSystem.enableBlend();
-            //RenderSystem.enableAlphaTest();
             RenderSystem.enableTexture();
             RenderSystem.enableDepthTest();
         }
