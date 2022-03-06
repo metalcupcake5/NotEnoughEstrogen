@@ -61,6 +61,12 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> ConfigManager.cultReminderTime = newValue)
                     .build());
 
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Show Drill Fuel"), ConfigManager.showDrillFuel)
+                    .setDefaultValue(false)
+                    .setTooltip(new TranslatableText("Shows remaining drill fuel as durability on drill items"))
+                    .setSaveConsumer(newValue -> ConfigManager.showDrillFuel = newValue)
+                    .build());
+
             builder.setSavingRunnable(ConfigManager::saveConfig);
 
             return builder.build();
