@@ -18,8 +18,8 @@ import java.nio.file.Path;
 public class ConfigManager {
     // config variables
     public static boolean showSkyblockIds = true;
-    public static boolean dropProtectionEnabled = true;
-    public static boolean skymallNotifEnabled = true;
+    public static boolean dropProtection = true;
+    public static boolean skymallNotif = true;
     public static boolean showItemInfo = true;
     public static boolean cultReminder = false;
     public static String cultReminderTime = "";
@@ -43,8 +43,8 @@ public class ConfigManager {
         }
         JsonObject config = new JsonObject();
         config.addProperty("showSkyblockIds", showSkyblockIds);
-        config.addProperty("dropProtectionEnabled", dropProtectionEnabled);
-        config.addProperty("skymallNotifEnabled", skymallNotifEnabled);
+        config.addProperty("dropProtectionEnabled", dropProtection);
+        config.addProperty("skymallNotifEnabled", skymallNotif);
         config.addProperty("showItemInfo", showItemInfo);
         config.addProperty("showCommissions", showCommissions);
         config.addProperty("cultReminder", cultReminder);
@@ -67,8 +67,8 @@ public class ConfigManager {
         try {
             JsonObject json = gson.fromJson(Files.newBufferedReader(CONFIG), JsonObject.class);
             showSkyblockIds = json.get("showSkyblockIds").getAsBoolean();
-            dropProtectionEnabled = json.get("dropProtectionEnabled").getAsBoolean();
-            skymallNotifEnabled = json.get("skymallNotifEnabled").getAsBoolean();
+            dropProtection = json.get("dropProtectionEnabled").getAsBoolean();
+            skymallNotif = json.get("skymallNotifEnabled").getAsBoolean();
             showItemInfo = json.get("showItemInfo").getAsBoolean();
             cultReminder = json.get("cultReminder").getAsBoolean();
             cultReminderTime = json.get("cultReminderTime").getAsString();
