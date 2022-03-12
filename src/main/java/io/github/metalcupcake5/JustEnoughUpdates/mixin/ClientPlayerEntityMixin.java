@@ -14,7 +14,7 @@ public class ClientPlayerEntityMixin {
 
     @Inject(method = "dropSelectedItem", at = @At("HEAD"), cancellable = true)
     private void dropSelectedItem(boolean entireStack, CallbackInfoReturnable<Boolean> cir){
-        if(SkyblockChecker.inSkyblock && ConfigManager.dropProtectionEnabled) {
+        if(SkyblockChecker.inSkyblock && ConfigManager.dropProtection) {
             cir.cancel();
             ChatUtils.sendClientMessage("You've disabled dropping items!");
         }

@@ -25,16 +25,16 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> ConfigManager.showSkyblockIds = newValue)
                     .build());
 
-            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Enable Drop Protection"), ConfigManager.dropProtectionEnabled)
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Enable Drop Protection"), ConfigManager.dropProtection)
                     .setDefaultValue(true)
                     .setTooltip(new TranslatableText("Disable dropping items while in Skyblock."))
-                    .setSaveConsumer(newValue -> ConfigManager.dropProtectionEnabled = newValue)
+                    .setSaveConsumer(newValue -> ConfigManager.dropProtection = newValue)
                     .build());
 
-            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Enable Skymall Notification"), ConfigManager.skymallNotifEnabled)
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Enable Skymall Notification"), ConfigManager.skymallNotif)
                     .setDefaultValue(true)
                     .setTooltip(new TranslatableText("Send a message and a sound when the HOTM Skymall perk has likely changed."))
-                    .setSaveConsumer(newValue -> ConfigManager.skymallNotifEnabled = newValue)
+                    .setSaveConsumer(newValue -> ConfigManager.skymallNotif = newValue)
                     .build());
 
             general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Enable Item Info"), ConfigManager.showItemInfo)

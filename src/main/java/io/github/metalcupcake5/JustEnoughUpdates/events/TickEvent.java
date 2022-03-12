@@ -20,7 +20,7 @@ public class TickEvent {
                 SkyblockChecker.check();
             TICKS = 0;
             if(SkyblockChecker.inDwarvenMines) {
-                if (ConfigManager.skymallNotifEnabled) {
+                if (ConfigManager.skymallNotif) {
                     String time = "0:0";
                     if (SkyblockTime.getCurrentTime().equals(time) && !skymall) {
                         ChatUtils.sendClientMessage("skymall changed");
