@@ -24,6 +24,7 @@ public class ConfigManager {
     public static boolean cultReminder = false;
     public static String cultReminderTime = "";
     public static boolean showDrillFuel = false;
+    public static boolean showArmadilloEggBlocks = true;
 
     public static final String[] cultReminderTimeList = new String[]{"0:00", "23:00", "23:30"};
     public static boolean showCommissions = true;
@@ -50,6 +51,7 @@ public class ConfigManager {
         config.addProperty("cultReminder", cultReminder);
         config.addProperty("cultReminderTime", cultReminderTime);
         config.addProperty("showDrillFuel", showDrillFuel);
+        config.addProperty("showArmadilloEggBlocks", showArmadilloEggBlocks);
         try {
             Files.write(CONFIG, gson.toJson(config).getBytes());
         } catch (IOException e) {
@@ -74,6 +76,7 @@ public class ConfigManager {
             cultReminderTime = json.get("cultReminderTime").getAsString();
             showCommissions = json.get("showCommissions").getAsBoolean();
             showDrillFuel = json.get("showDrillFuel").getAsBoolean();
+            showArmadilloEggBlocks = json.get("showArmadilloEggBlocks").getAsBoolean();
         } catch (JsonSyntaxException | NullPointerException e) {
             JustEnoughUpdates.LOGGER.warn("Malformed Json, Fixing");
             fix = true;

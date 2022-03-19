@@ -67,6 +67,12 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> ConfigManager.showDrillFuel = newValue)
                     .build());
 
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Show Armadillo Egg Blocks Walked"), ConfigManager.showArmadilloEggBlocks)
+                    .setDefaultValue(true)
+                    .setTooltip(new TranslatableText("Show the total blocks walked with a Prehistoric Egg in the item's lore"))
+                    .setSaveConsumer(newValue -> ConfigManager.showArmadilloEggBlocks = newValue)
+                    .build());
+
             builder.setSavingRunnable(ConfigManager::saveConfig);
 
             return builder.build();

@@ -17,9 +17,11 @@ public class ItemTooltipEvent {
             return;
         }
 
-        int armadilloBlocksWalked = attributes.getInt("blocks_walked");
-        if(armadilloBlocksWalked > 0){
-            lines.add(Text.of(Formatting.WHITE + "blocks walked: " + Formatting.GRAY + armadilloBlocksWalked));
+        if(ConfigManager.showArmadilloEggBlocks) {
+            int armadilloBlocksWalked = attributes.getInt("blocks_walked");
+            if (armadilloBlocksWalked > 0) {
+                lines.add(Text.of(Formatting.WHITE + "blocks walked: " + Formatting.GRAY + armadilloBlocksWalked));
+            }
         }
 
         if(ConfigManager.showSkyblockIds) {
@@ -28,6 +30,7 @@ public class ItemTooltipEvent {
                 lines.add(Text.of(Formatting.DARK_GRAY + "skyblock id: " + id));
             }
         }
+
         if(ConfigManager.showItemInfo) {
             String timestamp = attributes.getString("timestamp");
             if (timestamp.length() > 0) {
