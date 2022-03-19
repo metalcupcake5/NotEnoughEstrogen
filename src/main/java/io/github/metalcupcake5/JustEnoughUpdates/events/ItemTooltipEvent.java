@@ -16,6 +16,12 @@ public class ItemTooltipEvent {
         if(attributes == null){
             return;
         }
+
+        int armadilloBlocksWalked = attributes.getInt("blocks_walked");
+        if(armadilloBlocksWalked > 0){
+            lines.add(Text.of(Formatting.WHITE + "blocks walked: " + Formatting.GRAY + armadilloBlocksWalked));
+        }
+
         if(ConfigManager.showSkyblockIds) {
             String id = attributes.getString("id");
             if (id.length() > 0) {
