@@ -16,33 +16,37 @@ public class TickEvent {
 
         TICKS++;
         if (TICKS % 20 == 0) {
+            SkyblockTime.time += 1000;
             if (client.world != null && !client.isInSingleplayer())
                 SkyblockChecker.check();
-            TICKS = 0;
             if(SkyblockChecker.inDwarvenMines) {
                 if (ConfigManager.skymallNotif) {
                     String time = "0:00";
-                    if (SkyblockTime.getCurrentTime().equals(time) && !skymall) {
+                    if (SkyblockTime.getCurrentSkyblockTime().equals(time) && !skymall) {
                         ChatUtils.sendClientMessage("skymall changed");
                         assert client.player != null;
                         client.player.playSound(SoundEvents.BLOCK_NOTE_BLOCK_BELL, 100, 1);
                         skymall = true;
                     }
-                    if (!SkyblockTime.getCurrentTime().equals(time) && skymall) {
+                    if (!SkyblockTime.getCurrentSkyblockTime().equals(time) && skymall) {
                         skymall = false;
                     }
                 }
 
                 if(ConfigManager.cultReminder) {
-                    if (!cult && SkyblockTime.getCurrentTime().equals(ConfigManager.cultReminderTime)) {
+                    if (!cult && SkyblockTime.getCurrentSkyblockTime().equals(ConfigManager.cultReminderTime)) {
                         ChatUtils.sendClientMessage("cult is soon");
                         cult = true;
                     }
-                    if (!((SkyblockTime.getCurrentDay() + 1) % 7 == 0) && cult && !SkyblockTime.getCurrentTime().equals(ConfigManager.cultReminderTime)) {
+                    if (!((SkyblockTime.getCurrentDay() + 1) % 7 == 0) && cult && !SkyblockTime.getCurrentSkyblockTime().equals(ConfigManager.cultReminderTime)) {
                         cult = false;
                     }
                 }
             }
+        }
+        if (TICKS % 200 == 0){
+            SkyblockTime.recalibrateTime();
+            TICKS = 0;
         }
     }
 }

@@ -12,6 +12,8 @@ public class SkyblockTime {
     public static final int YEAR_S = YEAR_LENGTH * MONTH_S;
     public static final int YEAR_0 = 1560275700; // in seconds
 
+    public static long time;
+
     public static final String[] MONTHS = new String[]{
         "Early Spring", "Spring", "Late Spring",
         "Early Summer", "Summer", "Late Summer",
@@ -19,9 +21,17 @@ public class SkyblockTime {
         "Early Winter", "Winter", "Late Winter"
     };
 
+    public static long getTime(){
+        return time;
+    }
+
+    public static void recalibrateTime(){
+        time = Instant.now().getEpochSecond();
+    }
+
     // in 24 hour time
-    public static String getCurrentTime(){
-        double currentOffset = (Instant.now().getEpochSecond() - YEAR_0) % YEAR_S;
+    public static String getCurrentSkyblockTime(){
+        double currentOffset = (time - YEAR_0) % YEAR_S;
         double currentMonth = Math.floor(currentOffset / MONTH_S);
         double currentMonthOffset = (currentOffset - currentMonth * MONTH_S) % MONTH_S;
         double currentDay = Math.floor(currentMonthOffset / DAY_S);
@@ -33,14 +43,14 @@ public class SkyblockTime {
     }
 
     public static int getCurrentDay() {
-        double currentOffset = (Instant.now().getEpochSecond() - YEAR_0) % YEAR_S;
+        double currentOffset = (time - YEAR_0) % YEAR_S;
         double currentMonth = Math.floor(currentOffset / MONTH_S);
         double currentMonthOffset = (currentOffset - currentMonth * MONTH_S) % MONTH_S;
         return (int) Math.floor(currentMonthOffset / DAY_S) + 1;
     }
 
     public static String getCurrentMonth() {
-        double currentOffset = (Instant.now().getEpochSecond() - YEAR_0) % YEAR_S;
+        double currentOffset = (time - YEAR_0) % YEAR_S;
         return MONTHS[(int) Math.floor(currentOffset / MONTH_S)];
     }
 

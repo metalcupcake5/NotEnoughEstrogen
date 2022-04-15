@@ -4,6 +4,7 @@ import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
 import io.github.metalcupcake5.JustEnoughUpdates.events.ItemTooltipEvent;
 import io.github.metalcupcake5.JustEnoughUpdates.events.TickEvent;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockChecker;
+import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockTime;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -55,6 +56,8 @@ public class JustEnoughUpdates implements ModInitializer {
 		ItemTooltipCallback.EVENT.register((ItemTooltipEvent::onTooltip));
 
 		ConfigManager.loadConfig();
+
+		SkyblockTime.recalibrateTime();
 	}
 
 
