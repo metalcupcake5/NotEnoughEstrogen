@@ -2,9 +2,13 @@ package io.github.metalcupcake5.JustEnoughUpdates.events;
 
 import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.ChatUtils;
+import io.github.metalcupcake5.JustEnoughUpdates.utils.EnchantingHelper;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockChecker;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockTime;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.ingame.GenericContainerScreen;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundEvents;
 
 public class TickEvent {
@@ -15,6 +19,16 @@ public class TickEvent {
         if (client == null) return;
 
         TICKS++;
+        if (TICKS % 5 == 0) {
+            if(SkyblockChecker.inSkyblock) {
+                Screen screen = client.currentScreen;
+                if (screen instanceof GenericContainerScreen && EnchantingHelper.chestInventoryName.matches("Ultrasequencer \\([A-z]*\\)")) {
+                    ScreenHandler provider = client.player.currentScreenHandler;
+                    EnchantingHelper.inventory = provider.slots.get(0).inventory;
+                    EnchantingHelper.ultrasequencer();
+                }
+            }
+        }
         if (TICKS % 20 == 0) {
             SkyblockTime.time += 1000;
             if (client.world != null && !client.isInSingleplayer())

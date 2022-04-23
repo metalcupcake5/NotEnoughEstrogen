@@ -2,6 +2,7 @@ package io.github.metalcupcake5.JustEnoughUpdates;
 
 import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
 import io.github.metalcupcake5.JustEnoughUpdates.events.ItemTooltipEvent;
+import io.github.metalcupcake5.JustEnoughUpdates.events.ScreenEventsEvent;
 import io.github.metalcupcake5.JustEnoughUpdates.events.TickEvent;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockChecker;
 import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockTime;
@@ -9,6 +10,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.MessageType;
 import net.minecraft.text.Text;
@@ -54,6 +56,7 @@ public class JustEnoughUpdates implements ModInitializer {
 		);
 
 		ItemTooltipCallback.EVENT.register((ItemTooltipEvent::onTooltip));
+		ScreenEvents.AFTER_INIT.register((ScreenEventsEvent::after_init));
 
 		ConfigManager.loadConfig();
 
