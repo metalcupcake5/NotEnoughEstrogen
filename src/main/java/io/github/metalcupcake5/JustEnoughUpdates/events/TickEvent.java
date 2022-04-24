@@ -30,7 +30,7 @@ public class TickEvent {
             }
         }
         if (TICKS % 20 == 0) {
-            SkyblockTime.time += 1000;
+            SkyblockTime.time += 1;
             if (client.world != null && !client.isInSingleplayer())
                 SkyblockChecker.check();
             if(SkyblockChecker.inDwarvenMines) {
