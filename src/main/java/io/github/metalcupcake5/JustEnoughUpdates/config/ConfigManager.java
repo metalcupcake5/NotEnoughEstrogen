@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdates;
+import io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdatesClient;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.IOException;
@@ -38,7 +38,7 @@ public class ConfigManager {
             try {
                 Files.createFile(CONFIG);
             } catch (IOException e) {
-                JustEnoughUpdates.LOGGER.error("Couldn't create the config file");
+                JustEnoughUpdatesClient.LOGGER.error("Couldn't create the config file");
                 return;
             }
         }
@@ -55,13 +55,13 @@ public class ConfigManager {
         try {
             Files.write(CONFIG, gson.toJson(config).getBytes());
         } catch (IOException e) {
-            JustEnoughUpdates.LOGGER.error("Couldn't save the config file");
+            JustEnoughUpdatesClient.LOGGER.error("Couldn't save the config file");
         }
     }
 
     public static void loadConfig() {
         if(!Files.exists(CONFIG)) {
-            JustEnoughUpdates.LOGGER.info("could not find the config file, creating one");
+            JustEnoughUpdatesClient.LOGGER.info("could not find the config file, creating one");
             saveConfig();
             return;
         }
@@ -78,10 +78,10 @@ public class ConfigManager {
             showDrillFuel = json.get("showDrillFuel").getAsBoolean();
             showArmadilloEggBlocks = json.get("showArmadilloEggBlocks").getAsBoolean();
         } catch (JsonSyntaxException | NullPointerException e) {
-            JustEnoughUpdates.LOGGER.warn("Malformed Json, Fixing");
+            JustEnoughUpdatesClient.LOGGER.warn("Malformed Json, Fixing");
             fix = true;
         } catch (IOException e) {
-            JustEnoughUpdates.LOGGER.error("Couldn't read the config");
+            JustEnoughUpdatesClient.LOGGER.error("Couldn't read the config");
         }
         if (fix)
             saveConfig();

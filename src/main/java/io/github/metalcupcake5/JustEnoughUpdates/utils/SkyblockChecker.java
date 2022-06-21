@@ -2,7 +2,7 @@ package io.github.metalcupcake5.JustEnoughUpdates.utils;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdates;
+import io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdatesClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.scoreboard.Scoreboard;
@@ -64,7 +64,7 @@ public class SkyblockChecker {
             inSkyblock = false;
             inDwarvenMines = false;
             commissions = new ArrayList<>();
-            JustEnoughUpdates.LOGGER.error("Could not parse sidebar or tablist correctly!", e);
+            JustEnoughUpdatesClient.LOGGER.error("Could not parse sidebar or tablist correctly!", e);
         }
     }
 

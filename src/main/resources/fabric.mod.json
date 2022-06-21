@@ -17,8 +17,8 @@
 
   "environment": "client",
   "entrypoints": {
-    "main": [
-      "io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdates"
+    "client": [
+      "io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdatesClient"
     ],
     "modmenu": ["io.github.metalcupcake5.JustEnoughUpdates.config.ModMenuIntegration"]
   },
