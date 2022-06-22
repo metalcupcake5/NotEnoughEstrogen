@@ -23,7 +23,7 @@ public class ConfigManager {
     public static boolean showItemInfo = true;
     public static boolean cultReminder = false;
     public static String cultReminderTime = "";
-    public static boolean showDrillFuel = false;
+    public static boolean showMiningAbilityCooldown = true;
     public static boolean showArmadilloEggBlocks = true;
 
     public static final String[] cultReminderTimeList = new String[]{"0:00", "23:00", "23:30"};
@@ -50,7 +50,7 @@ public class ConfigManager {
         config.addProperty("showCommissions", showCommissions);
         config.addProperty("cultReminder", cultReminder);
         config.addProperty("cultReminderTime", cultReminderTime);
-        config.addProperty("showDrillFuel", showDrillFuel);
+        config.addProperty("showMiningAbilityCooldown", showMiningAbilityCooldown);
         config.addProperty("showArmadilloEggBlocks", showArmadilloEggBlocks);
         try {
             Files.write(CONFIG, gson.toJson(config).getBytes());
@@ -75,7 +75,7 @@ public class ConfigManager {
             cultReminder = json.get("cultReminder").getAsBoolean();
             cultReminderTime = json.get("cultReminderTime").getAsString();
             showCommissions = json.get("showCommissions").getAsBoolean();
-            showDrillFuel = json.get("showDrillFuel").getAsBoolean();
+            showMiningAbilityCooldown = json.get("showMiningAbilityCooldown").getAsBoolean();
             showArmadilloEggBlocks = json.get("showArmadilloEggBlocks").getAsBoolean();
         } catch (JsonSyntaxException | NullPointerException e) {
             JustEnoughUpdatesClient.LOGGER.warn("Malformed Json, Fixing");

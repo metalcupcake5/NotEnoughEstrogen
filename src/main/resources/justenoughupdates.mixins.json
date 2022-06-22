@@ -8,7 +8,10 @@
   "client": [
     "ClientPlayerEntityMixin",
     "InGameHudMixin",
-    "ItemRendererMixin"
+    "ItemRendererMixin",
+    "ChatHudListenerMixin",
+    "PlayerEntityMixin",
+    "ClientPlayNetworkHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

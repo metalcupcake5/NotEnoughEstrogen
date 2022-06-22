@@ -61,10 +61,10 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> ConfigManager.cultReminderTime = newValue)
                     .build());
 
-            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Show Drill Fuel"), ConfigManager.showDrillFuel)
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Show Mining Ability Cooldown"), ConfigManager.showMiningAbilityCooldown)
                     .setDefaultValue(false)
-                    .setTooltip(new TranslatableText("Shows remaining drill fuel as durability on drill items"))
-                    .setSaveConsumer(newValue -> ConfigManager.showDrillFuel = newValue)
+                    .setTooltip(new TranslatableText("Shows time remaining until you can next use your HOTM mining ability"))
+                    .setSaveConsumer(newValue -> ConfigManager.showMiningAbilityCooldown = newValue)
                     .build());
 
             general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("Show Armadillo Egg Blocks Walked"), ConfigManager.showArmadilloEggBlocks)

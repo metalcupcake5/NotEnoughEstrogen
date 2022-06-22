@@ -1,10 +1,7 @@
 package io.github.metalcupcake5.JustEnoughUpdates.events;
 
 import io.github.metalcupcake5.JustEnoughUpdates.config.ConfigManager;
-import io.github.metalcupcake5.JustEnoughUpdates.utils.ChatUtils;
-import io.github.metalcupcake5.JustEnoughUpdates.utils.EnchantingHelper;
-import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockChecker;
-import io.github.metalcupcake5.JustEnoughUpdates.utils.SkyblockTime;
+import io.github.metalcupcake5.JustEnoughUpdates.utils.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.GenericContainerScreen;
@@ -31,6 +28,7 @@ public class TickEvent {
         }
         if (TICKS % 20 == 0) {
             SkyblockTime.time += 1;
+            if(ItemUtils.pickaxeAbilityCooldown > 0) ItemUtils.pickaxeAbilityCooldown -= 1;
             if (client.world != null && !client.isInSingleplayer())
                 SkyblockChecker.check();
             if(SkyblockChecker.inDwarvenMines) {
