@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.metalcupcake5.NotEnoughEstrogen.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+  ],
+  "client": [
+    "ChatHudListenerMixin",
+    "ClientPlayerEntityMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "HandledScreenMixin",
+    "InGameHudMixin",
+    "ItemRendererMixin",
+    "MinecraftClientMixin",
+    "MouseMixin",
+    "PlayerEntityMixin",
+    "ScreenEventsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

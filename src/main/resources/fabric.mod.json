@@ -1,35 +1,33 @@
 {
   "schemaVersion": 1,
-  "id": "justenoughupdates",
+  "id": "notenoughestrogen",
   "version": "0.0.1",
-
-  "name": "JustEnoughUpdates",
+  "name": "NotEnoughEstrogen",
   "description": "high pixel sky block mod",
   "authors": [
     "metalcupcake5"
   ],
   "contact": {
-    "sources": "https://github.com/metalcupcake5/JustEnoughUpdates"
+    "sources": "https://github.com/metalcupcake5/NotEnoughEstrogen"
   },
-
   "license": "GNU AGPLv3",
-  "icon": "assets/JustEnoughUpdates/icon.png",
-
+  "icon": "assets/NotEnoughEstrogen/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "io.github.metalcupcake5.JustEnoughUpdates.JustEnoughUpdatesClient"
+      "io.github.metalcupcake5.NotEnoughEstrogen.NotEnoughEstrogenClient"
     ],
-    "modmenu": ["io.github.metalcupcake5.JustEnoughUpdates.config.ModMenuIntegration"]
+    "modmenu": [
+      "io.github.metalcupcake5.NotEnoughEstrogen.config.ModMenuIntegration"
+    ]
   },
   "mixins": [
-    "justenoughupdates.mixins.json"
+    "notenoughestrogen.mixins.json"
   ],
-
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.14.14",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "1.19.x",
     "java": ">=17"
   }
 }
